@@ -1,0 +1,310 @@
+/* Enlaces y Navegación */
+.nav-link {
+    text-decoration: none;
+    color: var(--color-title);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--color-cta);
+}
+
+/* Botones */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--color-cta);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-cta-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Textos Especiales */
+.tag-text {
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* --- Tarjetas del Carrusel 3D --- */
+.product-card {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 320px;
+    height: 420px;
+    background-color: var(--color-card);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--bg-general);
+    overflow: hidden;
+    transform: translateX(0) scale(0.5);
+    opacity: 0;
+    z-index: 0;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
+}
+
+/* ESTADOS DE LAS TARJETAS (Controlados por JS) */
+.product-card.card-center {
+    transform: translateX(0) scale(1.1);
+    opacity: 1;
+    z-index: 3;
+    pointer-events: auto;
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+}
+
+.product-card.card-left {
+    transform: translateX(-85%) scale(0.85);
+    opacity: 0.6;
+    z-index: 2;
+    pointer-events: auto;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+}
+
+.product-card.card-right {
+    transform: translateX(85%) scale(0.85);
+    opacity: 0.6;
+    z-index: 2;
+    pointer-events: auto;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+}
+
+.product-card.card-hidden-left {
+    transform: translateX(-150%) scale(0.6);
+    opacity: 0;
+    z-index: 1;
+}
+
+.product-card.card-hidden-right {
+    transform: translateX(150%) scale(0.6);
+    opacity: 0;
+    z-index: 1;
+}
+
+.product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-title {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-title);
+    margin-top: 5px;
+}
+
+/* Botones Laterales */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-card);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--color-title);
+    transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: var(--color-cta);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(23, 60, 56, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--bg-general);
+    border-radius: var(--radius-card);
+    max-width: 800px;
+    width: 90%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.is-active .modal-content {
+    transform: scale(1);
+}
+
+.modal-img-container {
+    width: 50%;
+}
+
+.modal-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-body {
+    width: 50%;
+    padding: 40px;
+    background-color: var(--color-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-title);
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        flex-direction: column;
+    }
+
+    .modal-img-container,
+    .modal-body {
+        width: 100%;
+    }
+
+    .modal-img-container img {
+        height: 200px;
+    }
+
+    /* Ajustes Carrusel Celular */
+    .carousel-container {
+        height: 450px;
+    }
+
+    .product-card {
+        width: 260px;
+        height: 360px;
+    }
+
+    .product-image {
+        height: 200px;
+    }
+
+    .product-card.card-left {
+        transform: translateX(-70%) scale(0.85);
+    }
+
+    .product-card.card-right {
+        transform: translateX(70%) scale(0.85);
+    }
+
+    .carousel-btn {
+        display: none;
+    }
+}
+
+/* Animación de rotación continua */
+@keyframes rotateSlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hero-logo-container {
+    position: relative;
+    width: 650px;
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 20px 30px rgba(23, 60, 56, 0.25));
+}
+
+.logo-borde {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    animation: rotateSlow 25s linear infinite;
+    z-index: 1;
+}
+
+.logo-centro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 77%;
+    height: auto;
+    object-fit: contain;
+    z-index: 2;
+}

@@ -1,0 +1,49 @@
+/* Importamos Montserrat para textos y las 3 opciones de cursivas elegantes para títulos */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@500;600&family=Great+Vibes&family=Parisienne&display=swap');
+
+:root {
+    /* Paleta de colores */
+    --bg-general: #FFFCF5;
+    --bg-alt: #E5F5EF;
+    --color-cta: #239F90;
+    --color-cta-hover: #1B7A6E;
+    --color-title: #173C38;
+    --color-text: #343B39;
+    --color-card: #FFFFFF;
+    --color-accent: #D99B79;
+
+    /* --- TIPOGRAFÍAS --- */
+    /* Para probar otra cursiva, simplemente cambiá 'Great Vibes' por 'Parisienne' o 'Dancing Script' */
+    --font-heading: 'Parisienne', cursive;
+
+    /* Tipografía para párrafos (limpia y moderna) */
+    --font-body: 'Montserrat', sans-serif;
+
+    /* Espaciados y Sombras */
+    --radius-card: 1.5rem;
+    --shadow-sm: 0 2px 4px rgba(23, 60, 56, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(23, 60, 56, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(23, 60, 56, 0.15);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--bg-general);
+    margin: 0;
+    padding-top: 80px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    color: var(--color-title);
+    margin: 0;
+    font-weight: 600;
+}

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doñitas - Alfajores Artesanales</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <!-- Columna Izquierda: Logo -->
+            <a href="#inicio" class="logo-link">
+                <!-- Asegúrate de tener logo-nav.png guardado en esa ruta -->
+                <img src="assets/img/logo-nav.png" alt="Doñitas" style="height: 50px;">
+            </a>
+
+            <!-- Columna Central: Enlaces -->
+            <div class="nav-links">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#catalogo" class="nav-link">Catálogo</a>
+                <a href="#historia" class="nav-link">Historia</a>
+                <a href="#puntos-venta" class="nav-link">Puntos de Venta</a>
+            </div>
+
+            <!-- Columna Derecha: Contrapeso vacío para centrar perfectamente -->
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="section"
+        style="display: flex; justify-content: center; align-items: flex-start; padding-top: 40px; padding-bottom: 60px;">
+        <div class="container" style="display: flex; justify-content: center;">
+
+            <!-- Contenedor del Logo Giratorio -->
+            <div class="hero-logo-container">
+                <img src="assets/img/fondo-logo.png" alt="Fondo del Logo" class="logo-borde">
+                <img src="assets/img/elementos-logo.png" alt="Logo Doñitas" class="logo-centro">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DIVISOR (Efecto Goteo) -->
+    <div class="divisor-goteo">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="volumen3D" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="var(--bg-general)" />
+                    <stop offset="95%" stop-color="#EBE3CD" />
+                </linearGradient>
+            </defs>
+            <path fill="url(#volumen3D)"
+                d="M0,0 V10 c10,0 15,40 25,40 s15,-40 25,-40 s15,80 25,80 s15,-80 25,-80 s15,30 25,30 s15,-30 25,-30 s15,90 25,90 s15,-90 25,-90 s15,50 25,50 s15,-50 25,-50 s15,110 25,110 s15,-110 25,-110 s15,20 25,20 s15,-20 25,-20 s15,70 25,70 s15,-70 25,-70 s15,40 25,40 s15,-40 25,-40 s15,100 25,100 s15,-100 25,-100 s15,30 25,30 s15,-30 25,-30 s15,60 25,60 s15,-60 25,-60 s15,80 25,80 s15,-80 25,-80 s15,20 25,20 s15,-20 25,-20 s15,50 25,50 s15,-50 25,-50 s15,90 25,90 s15,-90 25,-90 s15,40 25,40 s15,-40 25,-40 s15,110 25,110 s15,-110 25,-110 s15,30 25,30 s15,-30 25,-30 s15,70 25,70 s15,-70 25,-70 s15,100 25,100 s15,-100 25,-100 s15,20 25,20 s15,-20 25,-20 s15,60 25,60 s15,-60 25,-60 s15,80 25,80 s15,-80 25,-80 V0 H0 Z" />
+        </svg>
+    </div>
+
+    <!-- Catálogo 3D Cover Flow -->
+    <section id="catalogo" class="section section-alt" style="padding-bottom: 100px;">
+        <div class="container">
+            <h2 style="font-size: 3.5rem; text-align: center; margin-bottom: 10px;">Nuestro Catálogo</h2>
+            <p style="text-align: center; margin-bottom: 40px; font-weight: 500;">Deslizá o hacé clic para descubrir
+                nuestras variedades</p>
+        </div>
+
+        <!-- Contenedor del Carrusel -->
+        <div class="carousel-container">
+            <!-- Botones de Navegación -->
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+
+            <div class="carousel-track" id="catalog-track">
+
+                <!-- CLÁSICOS -->
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Chocolate Blanco', 'Dulce de leche artesanal bañado en el más suave chocolate blanco premium.', 'https://via.placeholder.com/400x300/E5F5EF/173C38')">
+                    <img src="https://via.placeholder.com/300x300/E5F5EF/173C38?text=Blanco" alt="Blanco"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Clásico</span>
+                        <h3 class="product-title">Dulce de leche con chocolate blanco</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Chocolate Negro', 'El clásico inigualable. Dulce de leche bañado en chocolate negro semiamargo.', 'https://via.placeholder.com/400x300/173C38/FFFFFF')">
+                    <img src="https://via.placeholder.com/300x300/173C38/FFFFFF?text=Negro" alt="Negro"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Clásico</span>
+                        <h3 class="product-title">Dulce de leche con chocolate negro</h3>
+                    </div>
+                </div>
+
+                <!-- ESPECIALES -->
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Oreo', 'Relleno de dulce de leche con trozos de galletita Oreo.', 'https://via.placeholder.com/400x300/343B39/FFFFFF')">
+                    <img src="https://via.placeholder.com/300x300/343B39/FFFFFF?text=Oreo" alt="Oreo"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Dulce de leche y Oreo</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Nuez', 'Combinación perfecta de dulce de leche y nueces seleccionadas.', 'https://via.placeholder.com/400x300/D99B79/FFFFFF')">
+                    <img src="https://via.placeholder.com/300x300/D99B79/FFFFFF?text=Nuez" alt="Nuez"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Dulce de leche y nuez</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Pistacho', 'Un toque gourmet: dulce de leche con auténtico pistacho.', 'https://via.placeholder.com/400x300/8B9A46/FFFFFF')">
+                    <img src="https://via.placeholder.com/300x300/8B9A46/FFFFFF?text=Pistacho" alt="Pistacho"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Dulce de leche y pistacho</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Block', 'Relleno de dulce de leche con trozos del clásico chocolate Block.', 'https://via.placeholder.com/400x300/4A2511/FFFFFF')">
+                    <img src="https://via.placeholder.com/300x300/4A2511/FFFFFF?text=Block" alt="Block"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Dulce de leche y chocolate Block</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Mantecol', 'La fusión soñada: dulce de leche y trocitos de Mantecol.', 'https://via.placeholder.com/400x300/E8C396/173C38')">
+                    <img src="https://via.placeholder.com/300x300/E8C396/173C38?text=Mantecol" alt="Mantecol"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Dulce de leche y Mantecol</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Frutos Rojos', 'Dulce de leche entrelazado con una ácida y dulce mermelada de frutos rojos.', 'https://via.placeholder.com/400x300/9E2A2B/FFFFFF')">
+                    <img src="https://via.placeholder.com/300x300/9E2A2B/FFFFFF?text=Frutos+Rojos" alt="Frutos Rojos"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Dulce de leche y frutos rojos</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Limón', 'Suave crema de limón artesanal, refrescante y deliciosa.', 'https://via.placeholder.com/400x300/F4D35E/173C38')">
+                    <img src="https://via.placeholder.com/300x300/F4D35E/173C38?text=Limón" alt="Limón"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Crema de limón</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Café', 'Intenso sabor a café tostado en una crema suave e irresistible.', 'https://via.placeholder.com/400x300/5C4033/FFFFFF')">
+                    <img src="https://via.placeholder.com/300x300/5C4033/FFFFFF?text=Café" alt="Café"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Crema de café</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Choco y Frutos', 'Chocolate negro relleno con confitura de frutos rojos patagónicos.', 'https://via.placeholder.com/400x300/5E1914/FFFFFF')">
+                    <img src="https://via.placeholder.com/300x300/5E1914/FFFFFF?text=Choco+Frutos" alt="Choco Frutos"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Chocolate con frutos rojos</h3>
+                    </div>
+                </div>
+
+                <div class="product-card"
+                    onclick="handleCardClick(this, 'Choco y Oreo', 'Una bomba de chocolate negro relleno con crema y galletitas Oreo.', 'https://via.placeholder.com/400x300/111111/FFFFFF')">
+                    <img src="https://via.placeholder.com/300x300/111111/FFFFFF?text=Choco+Oreo" alt="Choco Oreo"
+                        class="product-image">
+                    <div class="product-info">
+                        <span class="tag-text">Especial</span>
+                        <h3 class="product-title">Chocolate con Oreo</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Botón Siguiente -->
+            <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- DIVISOR SVG (Goteo Turquesa sobre Historia) -->
+    <div class="divisor-goteo goteo-turquesa">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Degradado para el líquido turquesa -->
+                <linearGradient id="volumenTurquesa" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="var(--bg-alt)" />
+                    <stop offset="95%" stop-color="#CBEAE0" />
+                </linearGradient>
+            </defs>
+            <path fill="url(#volumenTurquesa)"
+                d="M0,0 V10 c10,0 15,40 25,40 s15,-40 25,-40 s15,80 25,80 s15,-80 25,-80 s15,30 25,30 s15,-30 25,-30 s15,90 25,90 s15,-90 25,-90 s15,50 25,50 s15,-50 25,-50 s15,110 25,110 s15,-110 25,-110 s15,20 25,20 s15,-20 25,-20 s15,70 25,70 s15,-70 25,-70 s15,40 25,40 s15,-40 25,-40 s15,100 25,100 s15,-100 25,-100 s15,30 25,30 s15,-30 25,-30 s15,60 25,60 s15,-60 25,-60 s15,80 25,80 s15,-80 25,-80 s15,20 25,20 s15,-20 25,-20 s15,50 25,50 s15,-50 25,-50 s15,90 25,90 s15,-90 25,-90 s15,40 25,40 s15,-40 25,-40 s15,110 25,110 s15,-110 25,-110 s15,30 25,30 s15,-30 25,-30 s15,70 25,70 s15,-70 25,-70 s15,100 25,100 s15,-100 25,-100 s15,20 25,20 s15,-20 25,-20 s15,60 25,60 s15,-60 25,-60 s15,80 25,80 s15,-80 25,-80 V0 H0 Z" />
+        </svg>
+    </div>
+
+    <!-- Historia -->
+    <section id="historia" class="section">
+        <div class="container grid-2-cols">
+            <div>
+                <span class="tag-text">Nuestra Esencia</span>
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">La historia de Doñitas</h2>
+                <p style="margin-bottom: 20px; line-height: 1.8;">
+                    Todo comenzó en la cocina de nuestra casa, cuando nos dimos cuenta de lo difícil que era encontrar
+                    un alfajor rico, húmedo y artesanal que fuera apto para celíacos e intolerantes a la lactosa.
+                </p>
+                <p style="border-left: 4px solid var(--color-accent); padding-left: 15px; font-style: italic;">
+                    Hoy, somos un pequeño emprendimiento familiar dedicado a llevar alegría y dulzura a todos los
+                    hogares, demostrando que cuidarse no significa renunciar al placer.
+                </p>
+            </div>
+            <div>
+                <img src="https://via.placeholder.com/600x500/173C38/FFFCF5" alt="Preparación"
+                    style="width: 100%; border-radius: var(--radius-card);">
+            </div>
+        </div>
+    </section>
+
+    <!-- DIVISOR SVG (Goteo Crema sobre Puntos de Venta) -->
+    <div class="divisor-goteo goteo-oscuro">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Degradado para el líquido crema -->
+                <linearGradient id="volumenCrema" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="var(--bg-general)" />
+                    <stop offset="95%" stop-color="#EBE3CD" />
+                </linearGradient>
+            </defs>
+            <path fill="url(#volumenCrema)"
+                d="M0,0 V10 c10,0 15,40 25,40 s15,-40 25,-40 s15,80 25,80 s15,-80 25,-80 s15,30 25,30 s15,-30 25,-30 s15,90 25,90 s15,-90 25,-90 s15,50 25,50 s15,-50 25,-50 s15,110 25,110 s15,-110 25,-110 s15,20 25,20 s15,-20 25,-20 s15,70 25,70 s15,-70 25,-70 s15,40 25,40 s15,-40 25,-40 s15,100 25,100 s15,-100 25,-100 s15,30 25,30 s15,-30 25,-30 s15,60 25,60 s15,-60 25,-60 s15,80 25,80 s15,-80 25,-80 s15,20 25,20 s15,-20 25,-20 s15,50 25,50 s15,-50 25,-50 s15,90 25,90 s15,-90 25,-90 s15,40 25,40 s15,-40 25,-40 s15,110 25,110 s15,-110 25,-110 s15,30 25,30 s15,-30 25,-30 s15,70 25,70 s15,-70 25,-70 s15,100 25,100 s15,-100 25,-100 s15,20 25,20 s15,-20 25,-20 s15,60 25,60 s15,-60 25,-60 s15,80 25,80 s15,-80 25,-80 V0 H0 Z" />
+        </svg>
+    </div>
+
+    <!-- Puntos de Venta -->
+    <section id="puntos-venta" class="section section-dark">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 50px;">Encontrá tu alfajor</h2>
+            <div class="grid-2-cols">
+                <!-- Lista de locales -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: var(--radius-card); transition: background 0.3s;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+                        <h3 style="color: var(--color-cta); margin-bottom: 5px; font-size: 1.5rem;">Kiosco "La Plaza"
+                        </h3>
+                        <p style="color: rgba(255,252,245,0.9);">Av. Rivadavia 1055, Capitán Sarmiento.</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: var(--radius-card); transition: background 0.3s;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+                        <h3 style="color: var(--color-cta); margin-bottom: 5px; font-size: 1.5rem;">Maxikiosco Madrid
+                        </h3>
+                        <p style="color: rgba(255,252,245,0.9);">Av. Mitre 28, Capitán Sarmiento.</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: var(--radius-card); transition: background 0.3s;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+                        <h3 style="color: var(--color-cta); margin-bottom: 5px; font-size: 1.5rem;"> Autoservicio
+                            "Shell"
+                        </h3>
+                        <p style="color: rgba(255,252,245,0.9);">Av. Alem & 29 de Junio, Capitán Sarmiento.</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: var(--radius-card); transition: background 0.3s;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+                        <h3 style="color: var(--color-cta); margin-bottom: 5px; font-size: 1.5rem;"> "Almazen"
+                        </h3>
+                        <p style="color: rgba(255,252,245,0.9);">Av. de Mayo 266, Capitán Sarmiento.</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: var(--radius-card); transition: background 0.3s;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+                        <h3 style="color: var(--color-cta); margin-bottom: 5px; font-size: 1.5rem;"> Supermercado
+                            "Mu-Coop"
+                        </h3>
+                        <p style="color: rgba(255,252,245,0.9);">Av. Mitre & España, Capitán Sarmiento.</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: var(--radius-card); transition: background 0.3s;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                        onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+                        <h3 style="color: var(--color-cta); margin-bottom: 5px; font-size: 1.5rem;"> Despensa "Arrecifes
+                            Ofertas"
+                        </h3>
+                        <p style="color: rgba(255,252,245,0.9);">Córdoba & Felix, Barrio El Lago, Arrecifes.</p>
+                    </div>
+                </div>
+
+                <!-- Mapa de Google -->
+                <div
+                    style="height: 400px; border-radius: var(--radius-card); overflow: hidden; border: 4px solid rgba(255,255,255,0.05); box-shadow: var(--shadow-lg);">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x0:0x0!2z!3x!4m2!3m1!1s0x95bc9374092b3a69:0x85038c11438997bd!5sCapit%C3%A1n%20Sarmiento%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1610000000000!5m2!1ses-419!2sar"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+        style="background-color: #0d221f; padding: 30px 0; text-align: center; color: rgba(255, 252, 245, 0.6); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p>&copy; 2026 Doñitas. Todos los derechos reservados. | Diseñado por Gabriel Isidro.</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="alfajorModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeModal()">&times;</button>
+            <div class="modal-img-container">
+                <img id="modalImg" src="" alt="Interior">
+            </div>
+            <div class="modal-body">
+                <h3 id="modalTitle" style="font-size: 2rem; margin-bottom: 10px;"></h3>
+                <div style="width: 50px; height: 3px; background: var(--color-accent); margin-bottom: 20px;"></div>
+                <p id="modalDesc" style="margin-bottom: 30px; line-height: 1.6;"></p>
+                <button class="btn-primary" onclick="closeModal()" style="width: 100%;">Volver al catálogo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/3d-model.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
