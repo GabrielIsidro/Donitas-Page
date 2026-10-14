@@ -11,7 +11,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 252, 245, 0.95);
+    background-color: rgba(255, 252, 245, 0.605);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--bg-alt);
     z-index: 1000;
@@ -72,8 +72,7 @@
     height: 100%;
     margin-left: -1%;
     display: block;
-    filter: drop-shadow(0 2px 2px rgba(23, 60, 56, 0.15)) drop-shadow(0 8px 8px rgba(23, 60, 56, 0.10)) drop-shadow(0 15px 20px rgba(23, 60, 56, 0.08));
-}
+filter: drop-shadow(0 8px 10px rgba(23, 60, 56, 0.12));}
 
 .goteo-turquesa {
     background-color: var(--bg-general);
@@ -113,7 +112,7 @@
 .carousel-container {
     position: relative;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 0 auto;
     height: 500px;
     overflow: hidden;
@@ -151,5 +150,84 @@
     .navbar .container {
         display: flex;
         justify-content: center;
+    }
+}
+
+/* --- Cuadrícula de Puntos de Venta --- */
+.puntos-venta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px; 
+}
+
+/* Diseño de cada tarjetita de local */
+.local-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: var(--radius-card);
+    transition: background 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.local-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Tipografía de los locales (súper legible) */
+.local-card h3 {
+    font-family: var(--font-body) !important;
+    color: var(--color-cta);
+    margin-bottom: 10px;
+    font-weight: 600 !important;
+    font-size: 1.2rem !important;
+    letter-spacing: 0.5px;
+}
+
+.local-card p {
+    font-family: var(--font-body) !important;
+    color: rgba(255, 252, 245, 0.9);
+    margin: 0;
+    line-height: 1.4;
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+/* --- Mapa --- */
+.mapa-container {
+    width: 100%;
+    height: 450px;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    border: 4px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-lg);
+    position: relative; 
+}
+
+.mapa-container iframe {
+    width: 100% !important;
+    
+    height: calc(100% + 65px) !important;
+    margin-top: -65px;
+    
+    border: none;
+}
+
+/* Responsividad para la cuadrícula */
+@media (max-width: 992px) {
+    .puntos-venta-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .puntos-venta-grid {
+        grid-template-columns: 1fr; /* 1 columna en celulares */
     }
 }

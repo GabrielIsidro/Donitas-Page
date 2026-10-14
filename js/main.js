@@ -84,3 +84,18 @@ function handleSwipe() {
 
 // Iniciar
 updateCarousel();
+
+// --- LÓGICA DEL MAPA DE PUNTOS DE VENTA ---
+
+const MAPA_ID = "12QEgyaIDmJbi46kq4xPyQZ0F_S_YBDk&ehbc=2E312F"; 
+
+function centrarMapa(lat, lng) {
+    const iframe = document.querySelector('.mapa-container iframe');
+    if (iframe) {
+        iframe.src = `https://www.google.com/maps/d/embed?mid=${MAPA_ID}&ll=${lat},${lng}&z=18`;
+        
+        if(window.innerWidth < 768) {
+            document.querySelector('.mapa-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+}
