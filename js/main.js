@@ -29,20 +29,29 @@ let currentIndex = 0;
 function updateCarousel() {
     if (cards.length === 0) return;
 
+    // Limpiamos todas las clases posibles
     cards.forEach(card => {
-        card.classList.remove('card-center', 'card-left', 'card-right', 'card-hidden-left', 'card-hidden-right');
+        card.classList.remove('card-center', 'card-left', 'card-right', 'card-outer-left', 'card-outer-right', 'card-hidden-left', 'card-hidden-right');
     });
 
     const total = cards.length;
     const centerIndex = currentIndex;
     const leftIndex = (currentIndex - 1 + total) % total;
     const rightIndex = (currentIndex + 1) % total;
-    const hiddenLeftIndex = (currentIndex - 2 + total) % total;
-    const hiddenRightIndex = (currentIndex + 2) % total;
+    
+    // Nuevas tarjetas exteriores visibles
+    const outerLeftIndex = (currentIndex - 2 + total) % total;
+    const outerRightIndex = (currentIndex + 2) % total;
+    
+    // Tarjetas ocultas esperando entrar
+    const hiddenLeftIndex = (currentIndex - 3 + total) % total;
+    const hiddenRightIndex = (currentIndex + 3) % total;
 
     cards[centerIndex].classList.add('card-center');
     cards[leftIndex].classList.add('card-left');
     cards[rightIndex].classList.add('card-right');
+    cards[outerLeftIndex].classList.add('card-outer-left');
+    cards[outerRightIndex].classList.add('card-outer-right');
     cards[hiddenLeftIndex].classList.add('card-hidden-left');
     cards[hiddenRightIndex].classList.add('card-hidden-right');
 }
@@ -56,9 +65,9 @@ function moveCarousel(direction) {
 function handleCardClick(element, title, desc, img) {
     if (element.classList.contains('card-center')) {
         openModal(title, desc, img);
-    } else if (element.classList.contains('card-left')) {
+    } else if (element.classList.contains('card-left') || element.classList.contains('card-outer-left')) {
         moveCarousel(-1);
-    } else if (element.classList.contains('card-right')) {
+    } else if (element.classList.contains('card-right') || element.classList.contains('card-outer-right')) {
         moveCarousel(1);
     }
 }

@@ -50,8 +50,9 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    width: 320px;
-    height: 420px;
+    /* Tarjetas gigantes */
+    width: 420px;
+    height: 460px;
     background-color: var(--color-card);
     border-radius: var(--radius-card);
     border: 1px solid var(--bg-general);
@@ -67,60 +68,80 @@
 .product-card.card-center {
     transform: translateX(0) scale(1.1);
     opacity: 1;
-    z-index: 3;
+    z-index: 5;
     pointer-events: auto;
     box-shadow: var(--shadow-lg);
     cursor: pointer;
 }
 
 .product-card.card-left {
-    transform: translateX(-115%) scale(0.85); 
-    opacity: 0.6;
-    z-index: 2;
+    transform: translateX(-110%) scale(0.85); 
+    opacity: 0.85;
+    z-index: 4;
     pointer-events: auto;
     box-shadow: var(--shadow-md);
     cursor: pointer;
 }
 
 .product-card.card-right {
-    transform: translateX(115%) scale(0.85);
-    opacity: 0.6;
-    z-index: 2;
+    transform: translateX(110%) scale(0.85);
+    opacity: 0.85;
+    z-index: 4;
     pointer-events: auto;
     box-shadow: var(--shadow-md);
     cursor: pointer;
 }
 
+/* Nuevas tarjetas exteriores */
+.product-card.card-outer-left {
+    transform: translateX(-195%) scale(0.65);
+    opacity: 0.4;
+    z-index: 3;
+    pointer-events: auto;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+}
+
+.product-card.card-outer-right {
+    transform: translateX(195%) scale(0.65);
+    opacity: 0.4;
+    z-index: 3;
+    pointer-events: auto;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+}
+
+/* Tarjetas ocultas empujadas más atrás */
 .product-card.card-hidden-left {
-    transform: translateX(-220%) scale(0.6);
+    transform: translateX(-280%) scale(0.5);
     opacity: 0;
     z-index: 1;
 }
 
 .product-card.card-hidden-right {
-    transform: translateX(220%) scale(0.6);
+    transform: translateX(280%) scale(0.5);
     opacity: 0;
     z-index: 1;
 }
 
 .product-image {
     width: 100%;
-    height: 250px;
+    height: 350px; /* Imagen mucho más alta */
     object-fit: cover;
 }
 
 .product-info {
-    padding: 20px;
+    padding: 25px;
     text-align: center;
 }
 
 .product-title {
     font-family: var(--font-body);
-    font-size: 1.15rem;
+    font-size: 1.0rem; /* Título ligeramente más grande */
     font-weight: 700;
     line-height: 1.3;
     color: var(--color-title);
-    margin-top: 5px;
+    margin-top: 8px;
 }
 
 /* Botones Laterales */
@@ -281,8 +302,8 @@
 
 .hero-logo-container {
     position: relative;
-    width: 650px;
-    height: 650px;
+    width: 630px;
+    height: 550px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -292,15 +313,16 @@
 .logo-borde {
     position: absolute;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
     animation: rotateSlow 25s linear infinite;
     z-index: 1;
+    transform-origin: center center;
 }
 
 .logo-centro {
     position: absolute;
-    top: 48%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 77%;
