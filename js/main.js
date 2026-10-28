@@ -108,3 +108,59 @@ function centrarMapa(lat, lng) {
         }
     }
 }
+
+
+// --- EFECTO SCROLL REVEAL (AL BAJAR Y SUBIR) ---
+function initScrollReveal() {
+    const revealGroups = [
+        { selector: '#inicio .hero-logo-container', stagger: 0 },
+        { selector: '#catalogo .container h2, #catalogo .container p', stagger: 120 },
+        { selector: '#catalogo .carousel-container', stagger: 0 },
+        { selector: '#historia .grid-2-cols > div:first-child', stagger: 0, extraClass: 'reveal-left' },
+        { selector: '#historia .grid-2-cols > div:last-child', stagger: 150, extraClass: 'reveal-right' },
+        { selector: '#puntos-venta h2', stagger: 0 },
+        { selector: '#puntos-venta .local-card', stagger: 100 },
+        { selector: '#puntos-venta .mapa-container', stagger: 0 }
+    ];
+
+    const elementsToObserve = [];
+
+    revealGroups.forEach(({ selector, stagger, extraClass }) => {
+        const items = document.querySelectorAll(selector);
+        items.forEach((el, index) => {
+            el.classList.add('reveal');
+            if (extraClass) {
+                el.classList.add(extraClass);
+            }
+            if (stagger > 0) {
+                el.style.setProperty('--reveal-delay', `${index * stagger}ms`);
+            }
+            elementsToObserve.push(el);
+        });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const el = entry.target;
+            if (entry.isIntersecting) {
+                el.classList.add('reveal-visible');
+            } else {
+                el.classList.remove('reveal-visible');
+                if (!el.classList.contains('reveal-left') && !el.classList.contains('reveal-right')) {
+                    if (entry.boundingClientRect.top < 0) {
+                        el.classList.add('reveal-from-top');
+                    } else {
+                        el.classList.remove('reveal-from-top');
+                    }
+                }
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '-10% 0px -12% 0px'
+    });
+
+    elementsToObserve.forEach(el => observer.observe(el));
+}
+
+initScrollReveal();

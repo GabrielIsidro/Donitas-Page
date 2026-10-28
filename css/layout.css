@@ -49,6 +49,41 @@
 .section-dark {
     background-color: var(--color-title);
     color: var(--bg-general);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Luces ambientales difusas + fundido superior (sin mask-image pesado) */
+.section-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        linear-gradient(to bottom, var(--color-title) 0px, transparent 90px),
+        radial-gradient(circle at 15% 30%, rgba(35, 159, 144, 0.22) 0%, transparent 50%),
+        radial-gradient(circle at 85% 55%, rgba(217, 155, 121, 0.15) 0%, transparent 48%),
+        radial-gradient(circle at 50% 92%, rgba(35, 159, 144, 0.16) 0%, transparent 55%);
+}
+
+/* Patrón marca de agua artesanal (espigas, batidor, alfajor y hojitas del logo) */
+.section-dark::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+        linear-gradient(to bottom, var(--color-title) 0px, transparent 85px),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg transform='translate(45, 38)' stroke='%23FFFCF5' stroke-width='1.5' stroke-opacity='0.06'%3E%3Cpath d='M0,18 C-4,8 -4,0 0,-6 C4,0 4,8 0,18 Z' fill='%23FFFCF5' fill-opacity='0.03'/%3E%3Cpath d='M-6,20 C-14,14 -18,8 -15,3 C-10,5 -7,12 -6,20 Z' fill='%23FFFCF5' fill-opacity='0.03'/%3E%3Cpath d='M6,20 C14,14 18,8 15,3 C10,5 7,12 6,20 Z' fill='%23FFFCF5' fill-opacity='0.03'/%3E%3C/g%3E%3Cg transform='translate(155, 45) rotate(28)' stroke='%23D99B79' stroke-width='1.5' stroke-opacity='0.075'%3E%3Cpath d='M0,36 L0,-12'/%3E%3Cpath d='M0,22 C-8,18 -9,10 0,8'/%3E%3Cpath d='M0,22 C8,18 9,10 0,8'/%3E%3Cpath d='M0,10 C-8,6 -9,-2 0,-4'/%3E%3Cpath d='M0,10 C8,6 9,-2 0,-4'/%3E%3Cpath d='M0,-4 C-5,-10 -3,-16 0,-18 C3,-16 5,-10 0,-4'/%3E%3C/g%3E%3Cg transform='translate(55, 145) rotate(-15)' stroke='%23FFFCF5' stroke-width='1.5' stroke-opacity='0.055'%3E%3Crect x='-22' y='-12' width='44' height='7' rx='3.5'/%3E%3Cpath d='M-20,-2 Q-10,2 0,-2 T20,-2' stroke='%23D99B79' stroke-opacity='0.08' stroke-width='2'/%3E%3Crect x='-22' y='2' width='44' height='7' rx='3.5'/%3E%3C/g%3E%3Cg transform='translate(160, 155) rotate(-35)' stroke='%23E5F5EF' stroke-width='1.4' stroke-opacity='0.055'%3E%3Cline x1='0' y1='10' x2='0' y2='32' stroke-width='2'/%3E%3Cpath d='M0,10 C-12,-4 -8,-20 0,-20 C8,-20 12,-4 0,10 Z'/%3E%3Cpath d='M0,10 C-6,-2 -4,-18 0,-18 C4,-18 6,-2 0,10 Z'/%3E%3C/g%3E%3Ccircle cx='105' cy='95' r='2' fill='%23D99B79' fill-opacity='0.07'/%3E%3Ccircle cx='22' cy='98' r='1.5' fill='%23FFFCF5' fill-opacity='0.05'/%3E%3Ccircle cx='195' cy='108' r='1.8' fill='%23E5F5EF' fill-opacity='0.06'/%3E%3Cpath d='M110,185 L112,190 L117,192 L112,194 L110,199 L108,194 L103,192 L108,190 Z' fill='%23D99B79' fill-opacity='0.06'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 100% 100%, 220px 220px;
+    background-repeat: no-repeat, repeat;
+}
+
+.section-dark > .container {
+    position: relative;
+    z-index: 2;
 }
 
 .section-dark h2 {
@@ -113,7 +148,7 @@
     width: 100%;
     max-width: 1600px;
     margin: 0 auto;
-    height: 650px;
+    height: 480px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -166,19 +201,24 @@
 
 /* Diseño de cada tarjetita de local */
 .local-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(23, 60, 56, 0.65);
+    background-image: linear-gradient(135deg, rgba(255, 252, 245, 0.07) 0%, rgba(255, 252, 245, 0.03) 100%);
+    border: 1px solid rgba(255, 252, 245, 0.12);
     padding: 30px;
     border-radius: var(--radius-card);
-    transition: background 0.3s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
     justify-content: center;
     cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .local-card:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 252, 245, 0.09);
+    border-color: rgba(35, 159, 144, 0.45);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22), 0 0 18px rgba(35, 159, 144, 0.14);
 }
 
 /* Tipografía de los locales (súper legible) */
@@ -233,4 +273,41 @@
     .puntos-venta-grid {
         grid-template-columns: 1fr; /* 1 columna en celulares */
     }
+}
+
+/* --- Efecto Scroll Reveal (Bajada y Subida) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(80px) scale(0.92);
+    filter: blur(6px);
+    transition:
+        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.reveal.reveal-from-top {
+    transform: translateY(-80px) scale(0.92);
+}
+
+.reveal.reveal-left {
+    transform: translateX(-90px) scale(0.94);
+}
+
+.reveal.reveal-right {
+    transform: translateX(90px) scale(0.94);
+}
+
+.reveal.reveal-visible {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0px);
+}
+
+.local-card.reveal.reveal-visible:hover {
+    transform: translateY(-6px) scale(1.02);
+    transition-duration: 0.25s;
+    transition-delay: 0ms;
 }

@@ -50,98 +50,103 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    /* Tarjetas gigantes */
-    width: 420px;
-    height: 460px;
-    background-color: var(--color-card);
+    /* Tamaño estilizado y compacto */
+    width: 280px;
+    height: 380px;
+    background-color: transparent;
     border-radius: var(--radius-card);
-    border: 1px solid var(--bg-general);
-    overflow: hidden;
+    border: none;
+    overflow: visible;
     transform: translateX(0) scale(0.5);
     opacity: 0;
     z-index: 0;
     transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
     pointer-events: none;
 }
 
 /* ESTADOS DE LAS TARJETAS (Controlados por JS) */
 .product-card.card-center {
-    transform: translateX(0) scale(1.1);
+    transform: translateX(0) scale(1.05);
     opacity: 1;
     z-index: 5;
     pointer-events: auto;
-    box-shadow: var(--shadow-lg);
     cursor: pointer;
 }
 
 .product-card.card-left {
-    transform: translateX(-110%) scale(0.85); 
+    transform: translateX(-118%) scale(0.85); 
     opacity: 0.85;
     z-index: 4;
     pointer-events: auto;
-    box-shadow: var(--shadow-md);
     cursor: pointer;
 }
 
 .product-card.card-right {
-    transform: translateX(110%) scale(0.85);
+    transform: translateX(118%) scale(0.85);
     opacity: 0.85;
     z-index: 4;
     pointer-events: auto;
-    box-shadow: var(--shadow-md);
     cursor: pointer;
 }
 
 /* Nuevas tarjetas exteriores */
 .product-card.card-outer-left {
-    transform: translateX(-195%) scale(0.65);
+    transform: translateX(-215%) scale(0.68);
     opacity: 0.4;
     z-index: 3;
     pointer-events: auto;
-    box-shadow: var(--shadow-sm);
     cursor: pointer;
 }
 
 .product-card.card-outer-right {
-    transform: translateX(195%) scale(0.65);
+    transform: translateX(215%) scale(0.68);
     opacity: 0.4;
     z-index: 3;
     pointer-events: auto;
-    box-shadow: var(--shadow-sm);
     cursor: pointer;
 }
 
 /* Tarjetas ocultas empujadas más atrás */
 .product-card.card-hidden-left {
-    transform: translateX(-280%) scale(0.5);
+    transform: translateX(-300%) scale(0.5);
     opacity: 0;
     z-index: 1;
 }
 
 .product-card.card-hidden-right {
-    transform: translateX(280%) scale(0.5);
+    transform: translateX(300%) scale(0.5);
     opacity: 0;
     z-index: 1;
 }
 
 .product-image {
     width: 100%;
-    height: 350px; /* Imagen mucho más alta */
+    height: 270px;
     object-fit: cover;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-card.card-center .product-image {
+    box-shadow: var(--shadow-lg);
 }
 
 .product-info {
-    padding: 25px;
+    padding: 14px 10px 0;
     text-align: center;
+    background-color: transparent;
 }
 
 .product-title {
     font-family: var(--font-body);
-    font-size: 1.0rem; /* Título ligeramente más grande */
+    font-size: 0.95rem;
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.35;
     color: var(--color-title);
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 /* Botones Laterales */
@@ -264,24 +269,30 @@
 
     /* Ajustes Carrusel Celular */
     .carousel-container {
-        height: 450px;
+        height: 400px;
     }
 
     .product-card {
-        width: 260px;
-        height: 360px;
+        width: 230px;
+        height: 330px;
     }
 
     .product-image {
-        height: 200px;
+        height: 210px;
     }
 
     .product-card.card-left {
-        transform: translateX(-70%) scale(0.85);
+        transform: translateX(-60%) scale(0.82);
     }
 
     .product-card.card-right {
-        transform: translateX(70%) scale(0.85);
+        transform: translateX(60%) scale(0.82);
+    }
+
+    .product-card.card-outer-left,
+    .product-card.card-outer-right {
+        opacity: 0;
+        pointer-events: none;
     }
 
     .carousel-btn {
@@ -307,7 +318,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    filter: drop-shadow(0 20px 30px rgba(23, 60, 56, 0.25));
 }
 
 .logo-borde {
@@ -318,6 +328,8 @@
     animation: rotateSlow 25s linear infinite;
     z-index: 1;
     transform-origin: center center;
+    will-change: transform;
+    filter: drop-shadow(0 16px 24px rgba(23, 60, 56, 0.22));
 }
 
 .logo-centro {
