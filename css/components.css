@@ -527,3 +527,125 @@
 .preloader.is-loaded .preloader-bar-container {
     opacity: 0;
 }
+/* --- Listón de premio sobre la foto de Historia --- */
+.historia-foto {
+    position: relative;
+}
+
+.premio-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    z-index: 3;
+    width: 76px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    filter: drop-shadow(0 6px 8px rgba(23, 60, 56, 0.35));
+    transform-origin: top center;
+    animation: premio-balanceo 4s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.premio-btn svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.premio-btn:hover,
+.premio-btn:focus-visible {
+    animation-play-state: paused;
+    transform: scale(1.1);
+}
+
+.premio-btn:focus-visible {
+    outline: 3px solid var(--color-cta);
+    outline-offset: 4px;
+    border-radius: 12px;
+}
+
+.premio-btn-label {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--color-title);
+    color: var(--bg-general);
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(23, 60, 56, 0.25);
+}
+
+@keyframes premio-balanceo {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+.premio-info {
+    position: absolute;
+    top: 100px;
+    right: 14px;
+    z-index: 4;
+    width: min(340px, calc(100% - 28px));
+    padding: 22px 22px 20px;
+    background: var(--color-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lg);
+    border-top: 4px solid #D4AF37;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.premio-info[hidden] {
+    display: block;
+    visibility: hidden;
+}
+
+.premio-info.is-open {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.premio-info h3 {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-title);
+    margin: 4px 0 8px;
+}
+
+.premio-info p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.premio-cerrar {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    border: none;
+    background: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--color-title);
+    cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .premio-btn { animation: none; }
+}

@@ -255,3 +255,31 @@ function initScrollReveal() {
 }
 
 initScrollReveal();
+
+
+// --- LISTÓN DE PREMIO (Historia) ---
+(function initPremio() {
+    const btn = document.getElementById('premioBtn');
+    const info = document.getElementById('premioInfo');
+    const cerrar = document.getElementById('premioCerrar');
+    if (!btn || !info) return;
+
+    function setOpen(open) {
+        if (open) info.hidden = false;
+        info.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        if (!open) info.hidden = true;
+    }
+
+    btn.addEventListener('click', e => {
+        e.stopPropagation();
+        setOpen(!info.classList.contains('is-open'));
+    });
+    cerrar.addEventListener('click', () => setOpen(false));
+    document.addEventListener('click', e => {
+        if (!info.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') setOpen(false);
+    });
+})();

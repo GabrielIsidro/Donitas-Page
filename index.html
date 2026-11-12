@@ -140,8 +140,60 @@
                 </p>
             </div>
             <div>
-                <img src="https://via.placeholder.com/600x500/173C38/FFFCF5" alt="Preparación"
-                    style="width: 100%; border-radius: var(--radius-card);">
+            <div class="historia-foto">
+                <img src="assets/img/historia.png" alt="Alfajores Doñitas Sin T.A.C.C." loading="lazy"
+                    style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; border-radius: var(--radius-card);">
+
+                <!-- Listón del premio -->
+                <button type="button" class="premio-btn" id="premioBtn" aria-expanded="false"
+                    aria-controls="premioInfo" aria-label="Ver por qué ganamos el premio al mejor alfajor">
+                    <svg viewBox="0 0 80 110" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="rojoCinta1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#D92534" />
+                                <stop offset="100%" stop-color="#800D15" />
+                            </linearGradient>
+                            <linearGradient id="rojoCinta2" x1="1" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#C01E2C" />
+                                <stop offset="100%" stop-color="#660A10" />
+                            </linearGradient>
+                            <linearGradient id="oroMedalla" x1="0.1" y1="0" x2="0.9" y2="1">
+                                <stop offset="0%" stop-color="#FFF3B0" />
+                                <stop offset="35%" stop-color="#E8B923" />
+                                <stop offset="70%" stop-color="#C99A12" />
+                                <stop offset="100%" stop-color="#8F650A" />
+                            </linearGradient>
+                            <linearGradient id="oroInterior" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#FFE98A" />
+                                <stop offset="100%" stop-color="#E0A81B" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Cintas Rojas -->
+                        <path d="M18 56 L6 104 L24 94 L36 106 L42 62 Z" fill="url(#rojoCinta1)" />
+                        <path d="M62 56 L74 104 L56 94 L44 106 L38 62 Z" fill="url(#rojoCinta2)" />
+                        <!-- Medalla Dorada -->
+                        <circle cx="40" cy="38" r="32" fill="url(#oroMedalla)" />
+                        <circle cx="40" cy="38" r="26" fill="url(#oroInterior)" />
+                        <circle cx="40" cy="38" r="22" fill="none" stroke="#9A6F0B" stroke-width="1.5"
+                            stroke-dasharray="2 3" />
+                        <path d="M40 22 L44.4 31.6 L54.8 32.8 L47 39.8 L49.2 50 L40 44.8 L30.8 50 L33 39.8 L25.2 32.8 L35.6 31.6 Z"
+                            fill="#FFF8D6" stroke="#9A6F0B" stroke-width="1" stroke-linejoin="round" />
+                    </svg>
+                    <span class="premio-btn-label">Mención Especial</span>
+                </button>
+
+                <div class="premio-info" id="premioInfo" role="dialog" aria-labelledby="premioTitulo" hidden>
+                    <button type="button" class="premio-cerrar" id="premioCerrar" aria-label="Cerrar">&times;</button>
+                    <span class="tag-text">9° Fiesta Provincial del Alfajor · 2026</span>
+                    <h3 id="premioTitulo">3° mejor alfajor y el N° 1 entre los aptos</h3>
+                    <p>
+                        En la <strong>9° Fiesta Provincial del Alfajor (Rawson)</strong>, organizada por la Cooperadora del CEA N° 29 y con <strong>66 alfajoreros de todo el país</strong> compitiendo en la Plaza San Martín, el jurado distinguió a Doñitas con el <strong>3° puesto general</strong>.
+                    </p>
+                    <p>
+                        Siendo los primeros dos puestos alfajores tradicionales, Doñitas se consagró como el <strong>mejor alfajor sin T.A.C.C. y sin lactosa</strong> de todo el certamen: el único del podio que pueden disfrutar celíacos e intolerantes a la lactosa sin resignar sabor ni calidad artesanal.
+                    </p>
+                </div>
+            </div>
             </div>
         </div>
     </section>
@@ -248,7 +300,7 @@
     </a>
 
     <script src="js/productos.js?v=1"></script>
-    <script src="js/main.js?v=3"></script>
+    <script src="js/main.js?v=6"></script>
 </body>
 
 </html>
