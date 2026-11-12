@@ -123,6 +123,45 @@
     background-color: var(--color-title);
 }
 
+/* --- Divisor de Olas Animadas (estilo Guaymallén) --- */
+.divisor-olas {
+    width: 100%;
+    height: 130px;
+    background-color: var(--bg-alt); /* color de la sección de arriba (Catálogo) */
+    line-height: 0;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    margin-bottom: -1px; /* evita línea fina entre el divisor y la sección */
+}
+
+/* El SVG mide el doble de ancho y contiene 2 olas idénticas: al desplazarlo
+   la mitad hacia la izquierda, el bucle queda continuo */
+.divisor-olas .ola-track {
+    display: block;
+    width: 200%;
+    height: 100%;
+    fill: var(--bg-general); /* color de la sección de abajo (Historia) */
+    animation: olas-mover 12s linear infinite;
+}
+
+/* Movimiento de derecha a izquierda */
+@keyframes olas-mover {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .divisor-olas .ola-track {
+        animation: none;
+    }
+}
+
 #catalogo {
     padding-top: 40px;
 }
@@ -194,7 +233,8 @@
         align-items: center;
     }
 
-    .divisor-goteo {
+    .divisor-goteo,
+    .divisor-olas {
         height: 65px;
     }
 }
