@@ -1,3 +1,32 @@
+// --- LÓGICA DE LA PANTALLA DE CARGA (PRELOADER) ---
+const preloader = document.getElementById('preloader');
+const preloaderBar = document.querySelector('.preloader-bar');
+
+if (preloader) {
+    // Bloquear el scroll mientras se muestra la pantalla de carga
+    document.body.style.overflow = 'hidden';
+
+    window.addEventListener('load', () => {
+        // Iniciar el llenado de la barra de progreso hasta el 100% (1.8s definidos en CSS)
+        if (preloaderBar) {
+            requestAnimationFrame(() => {
+                preloaderBar.style.width = '100%';
+            });
+        }
+
+        // Esperar a que la barra llegue al 100% (1800ms) para disparar el efecto Zoom-In
+        setTimeout(() => {
+            preloader.classList.add('is-loaded');
+            document.body.style.overflow = '';
+
+            // Eliminar el nodo del DOM tras finalizar la transición de salida (600ms)
+            setTimeout(() => {
+                preloader.remove();
+            }, 600);
+        }, 1800);
+    });
+}
+
 const modal = document.getElementById('alfajorModal');
 const modalImg = document.getElementById('modalImg');
 const modalTitle = document.getElementById('modalTitle');

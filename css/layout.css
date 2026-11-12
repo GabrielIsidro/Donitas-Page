@@ -37,6 +37,13 @@
     justify-self: center;
 }
 
+/* Contenedor derecho de redes sociales en la Navbar */
+.nav-social {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+}
+
 /* Secciones Generales */
 .section {
     padding: 100px 0;
@@ -183,7 +190,8 @@
 
     .navbar .container {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .divisor-goteo {
