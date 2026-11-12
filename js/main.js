@@ -32,11 +32,26 @@ const modalImg = document.getElementById('modalImg');
 const modalTitle = document.getElementById('modalTitle');
 const modalDesc = document.getElementById('modalDesc');
 
+const modalImgHover = document.getElementById('modalImgHover');
+
 // Lógica de apertura/cierre de Modales
-function openModal(title, desc, imgSrc) {
+function openModal(title, desc, imgSrc, hoverSrc, fallbackSrc) {
     modalTitle.innerText = title;
     modalDesc.innerText = desc;
+
+    // Si falta la foto "entero" se usa el placeholder
+    modalImg.onerror = fallbackSrc ? () => { modalImg.onerror = null; modalImg.src = fallbackSrc; } : null;
     modalImg.src = imgSrc;
+
+    if (hoverSrc) {
+        // Si falta la foto "mitad", simplemente no se muestra
+        modalImgHover.onerror = () => { modalImgHover.style.display = 'none'; };
+        modalImgHover.style.display = '';
+        modalImgHover.src = hoverSrc;
+    } else {
+        modalImgHover.removeAttribute('src');
+        modalImgHover.style.display = 'none';
+    }
     modal.classList.add('is-active');
 }
 
@@ -50,9 +65,56 @@ modal.addEventListener('click', (e) => {
     }
 });
 
+// --- GENERACIÓN DE TARJETAS DESDE js/productos.js ---
+const track = document.getElementById('catalog-track');
+
+function placeholderUrl(p, w, h, texto) {
+    const t = texto ? `?text=${encodeURIComponent(texto)}` : '';
+    return `https://via.placeholder.com/${w}x${h}/${p.color}/${p.textoColor}${t}`;
+}
+
+function renderProductos() {
+    if (!track || typeof productos === 'undefined') return;
+
+    productos.forEach(p => {
+        const base = `${RUTA_PRODUCTOS}/${p.slug}`;
+        const paquete = `${base}/paquete.${EXT_IMAGENES}`;
+        const entero = `${base}/entero.${EXT_IMAGENES}`;
+        const mitad = `${base}/mitad.${EXT_IMAGENES}`;
+        const fallbackCard = placeholderUrl(p, 300, 300, p.nombre);
+        const fallbackModal = placeholderUrl(p, 400, 300);
+
+        const card = document.createElement('div');
+        card.className = 'product-card';
+
+        const img = document.createElement('img');
+        img.className = 'product-image';
+        img.alt = p.nombre;
+        img.loading = 'lazy';
+        img.onerror = () => { img.onerror = null; img.src = fallbackCard; };
+        img.src = paquete;
+
+        const info = document.createElement('div');
+        info.className = 'product-info';
+        const tag = document.createElement('span');
+        tag.className = 'tag-text';
+        tag.textContent = p.categoria;
+        const title = document.createElement('h3');
+        title.className = 'product-title';
+        title.textContent = p.titulo;
+        info.append(tag, title);
+
+        card.append(img, info);
+        card.addEventListener('click', () =>
+            handleCardClick(card, p.nombre, p.desc, entero, mitad, fallbackModal));
+        track.appendChild(card);
+    });
+}
+
+renderProductos();
+
 // --- LÓGICA DE CARRUSEL COVER FLOW INFINITO ---
 const cards = Array.from(document.querySelectorAll('.product-card'));
-const track = document.getElementById('catalog-track');
 let currentIndex = 0;
 
 function updateCarousel() {
@@ -91,9 +153,9 @@ function moveCarousel(direction) {
     updateCarousel();
 }
 
-function handleCardClick(element, title, desc, img) {
+function handleCardClick(element, title, desc, img, hoverImg, fallbackImg) {
     if (element.classList.contains('card-center')) {
-        openModal(title, desc, img);
+        openModal(title, desc, img, hoverImg, fallbackImg);
     } else if (element.classList.contains('card-left') || element.classList.contains('card-outer-left')) {
         moveCarousel(-1);
     } else if (element.classList.contains('card-right') || element.classList.contains('card-outer-right')) {
