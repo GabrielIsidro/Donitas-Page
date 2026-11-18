@@ -44,8 +44,65 @@
     align-items: center;
 }
 
-/* Secciones Generales */
-.section {
+/* Menú de la navbar: en escritorio sus hijos participan directamente en la grilla */
+.nav-menu {
+    display: contents;
+}
+
+/* Botón hamburguesa (oculto en escritorio) */
+.nav-toggle {
+    display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--bg-alt);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.nav-toggle:hover {
+    background-color: rgba(35, 159, 144, 0.18);
+}
+
+.nav-toggle:focus-visible {
+    outline: 3px solid var(--color-cta);
+    outline-offset: 3px;
+}
+
+.nav-toggle-bar {
+    position: absolute;
+    left: 12px;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: var(--color-title);
+    transition: transform 0.3s ease, opacity 0.2s ease, top 0.3s ease;
+}
+
+.nav-toggle-bar:nth-child(1) { top: 15px; }
+.nav-toggle-bar:nth-child(2) { top: 21px; }
+.nav-toggle-bar:nth-child(3) { top: 27px; }
+
+/* Animación hamburguesa → X */
+.navbar.is-open .nav-toggle-bar:nth-child(1) {
+    top: 21px;
+    transform: rotate(45deg);
+}
+
+.navbar.is-open .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar.is-open .nav-toggle-bar:nth-child(3) {
+    top: 21px;
+    transform: rotate(-45deg);
+}
+
+/* Secciones Generales */.section {
     padding: 100px 0;
 }
 
@@ -156,11 +213,6 @@
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .divisor-olas .ola-track {
-        animation: none;
-    }
-}
 
 #catalogo {
     padding-top: 40px;
@@ -213,9 +265,6 @@
         grid-template-columns: 1fr;
     }
 
-    .nav-links {
-        display: none;
-    }
 
     .hero-layout {
         flex-direction: column;
@@ -227,15 +276,109 @@
         height: 300px;
     }
 
+    /* --- Navbar móvil: hamburguesa a la izquierda, logo al centro --- */
+    body {
+        padding-top: 64px;
+    }
+
+    .navbar {
+        height: 64px;
+    }
+
     .navbar .container {
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        padding: 0 14px;
+        box-sizing: border-box;
+    }
+
+    .logo-link img {
+        height: 40px !important;
+        width: auto;
+        display: block;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+    }
+
+    .logo-link {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: center;
         display: flex;
-        justify-content: space-between;
         align-items: center;
     }
 
+    /* Panel desplegable con los enlaces y el botón de Instagram */
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 14px 20px 24px;
+        background-color: rgba(255, 252, 245, 0.97);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--bg-alt);
+        box-shadow: var(--shadow-md);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    }
+
+    .navbar.is-open .nav-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        pointer-events: auto;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 14px 0;
+        font-size: 1.05rem;
+        border-bottom: 1px solid rgba(23, 60, 56, 0.08);
+    }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .nav-social {
+        justify-self: center;
+    }
+
+    /* --- Divisores adaptados a móvil --- */
     .divisor-goteo,
     .divisor-olas {
-        height: 65px;
+        height: 52px;
+    }
+
+    /* El goteo no se aplasta: el SVG mantiene un ancho mínimo y se recorta centrado */
+    .divisor-goteo svg {
+        width: max(100%, 600px);
+        max-width: none;
+        margin-left: calc(50% - max(50%, 300px));
+    }
+
+    /* Las olas mantienen su proporción: cada ola mide al menos ~700px */
+    .divisor-olas .ola-track {
+        width: max(200%, 1200px);
     }
 }
 

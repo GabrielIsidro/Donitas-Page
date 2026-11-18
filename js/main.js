@@ -1,3 +1,15 @@
+// --- AL RECARGAR, VOLVER SIEMPRE AL INICIO DE LA PAGINA ---
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+if (location.hash) {
+    // Quita el #ancla de la URL para que el navegador no salte a esa seccion
+    history.replaceState(null, '', location.pathname + location.search);
+}
+const irAlInicio = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+irAlInicio();
+window.addEventListener('pageshow', irAlInicio);
+window.addEventListener('load', irAlInicio);
 // --- LÓGICA DE LA PANTALLA DE CARGA (PRELOADER) ---
 const preloader = document.getElementById('preloader');
 const preloaderBar = document.querySelector('.preloader-bar');
@@ -281,5 +293,42 @@ initScrollReveal();
     });
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') setOpen(false);
+    });
+})();
+
+// --- MENÚ HAMBURGUESA (Navbar móvil) ---
+(function initNavMenu() {
+    const navbar = document.querySelector('.navbar');
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    if (!navbar || !toggle || !menu) return;
+
+    function setMenu(open) {
+        navbar.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    }
+
+    toggle.addEventListener('click', e => {
+        e.stopPropagation();
+        setMenu(!navbar.classList.contains('is-open'));
+    });
+
+    // Cerrar al elegir un enlace del menú
+    menu.addEventListener('click', e => {
+        if (e.target.closest('a')) setMenu(false);
+    });
+
+    // Cerrar al tocar fuera de la navbar o con Escape
+    document.addEventListener('click', e => {
+        if (!navbar.contains(e.target)) setMenu(false);
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') setMenu(false);
+    });
+
+    // Al volver a escritorio, restablecer el estado
+    window.matchMedia('(min-width: 769px)').addEventListener('change', e => {
+        if (e.matches) setMenu(false);
     });
 })();

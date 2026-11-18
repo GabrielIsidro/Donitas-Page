@@ -649,3 +649,259 @@
 @media (prefers-reduced-motion: reduce) {
     .premio-btn { animation: none; }
 }
+
+/* ==========================================================
+   AJUSTES MOVILES (tablet y celulares, p. ej. Galaxy S10 360x760)
+   Los !important pisan estilos inline definidos en index.html
+   ========================================================== */
+@media (max-width: 768px) {
+    /* Hero: logo giratorio en cuadrado, con ancho definido por la pantalla */
+    #inicio {
+        padding-top: 16px !important;
+        padding-bottom: 44px !important;
+    }
+
+    .hero-logo-container {
+        width: min(calc(100vw - 56px), 400px);
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .logo-centro {
+        width: 72%;
+    }
+
+    /* Secciones y tipografia mas compactas */
+    .section {
+        padding: 50px 0;
+    }
+
+    #catalogo {
+        padding-top: 20px;
+        padding-bottom: 50px !important;
+    }
+
+    #catalogo h2,
+    #puntos-venta h2 {
+        font-size: 2.3rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    #catalogo .container p,
+    #puntos-venta .container > p {
+        font-size: 0.88rem;
+        margin-bottom: 20px !important;
+        line-height: 1.5;
+    }
+
+    #historia h2 {
+        font-size: 2rem !important;
+        margin-bottom: 12px !important;
+    }
+
+    #historia p {
+        font-size: 0.9rem;
+        line-height: 1.6 !important;
+        margin-bottom: 14px !important;
+    }
+
+    .grid-2-cols {
+        gap: 28px;
+    }
+
+    /* Carrusel */
+    .carousel-container {
+        height: 330px;
+    }
+
+    .product-card {
+        width: 180px;
+        height: 275px;
+    }
+
+    .product-image {
+        height: 175px;
+    }
+
+    .product-info {
+        padding: 10px 6px 0;
+    }
+
+    .product-title {
+        font-size: 0.8rem;
+    }
+
+    .tag-text {
+        font-size: 0.7rem;
+        margin-bottom: 4px;
+    }
+
+    /* Puntos de venta */
+    .puntos-venta-grid {
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .local-card {
+        padding: 16px 18px;
+    }
+
+    .local-card h3 {
+        font-size: 1rem !important;
+        margin-bottom: 4px;
+    }
+
+    .local-card p {
+        font-size: 0.82rem;
+    }
+
+    .mapa-container {
+        height: 320px;
+    }
+
+    /* Liston de premio */
+    .premio-btn {
+        width: 56px;
+        top: 6px;
+        right: 10px;
+    }
+
+    .premio-btn-label {
+        font-size: 0.55rem;
+        padding: 2px 7px;
+    }
+
+    .premio-info {
+        top: 84px;
+        padding: 16px 16px 14px;
+    }
+
+    .premio-info h3 {
+        font-size: 0.95rem;
+    }
+
+    .premio-info p {
+        font-size: 0.8rem;
+    }
+
+    /* Modal de producto */
+    .modal-content {
+        max-height: 88vh;
+        overflow-y: auto;
+    }
+
+    .modal-img-container {
+        height: 240px;
+        background-color: #FFFFFF;
+        flex-shrink: 0;
+    }
+
+    .modal-img-container img {
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .modal-body {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .btn-close {
+        z-index: 2;
+        box-shadow: var(--shadow-sm);
+    }
+
+    #modalTitle {
+        font-size: 1.5rem !important;
+    }
+
+    #modalDesc {
+        font-size: 0.88rem;
+        margin-bottom: 18px !important;
+    }
+
+    .btn-primary {
+        padding: 11px 24px;
+        font-size: 0.9rem;
+    }
+
+    /* Pantalla de carga */
+    .preloader-logo {
+        height: 70px;
+    }
+
+    .preloader-bar-container {
+        width: 150px;
+    }
+
+    footer {
+        font-size: 0.78rem !important;
+        padding: 20px 12px !important;
+    }
+}
+
+/* ---------- Ajustes moviles: correcciones (WhatsApp, preloader, carrusel) ---------- */
+@media (max-width: 768px) {
+    /* Evita que las animaciones laterales de Historia ensanchen la pagina */
+    /* El logo del hero gira: su caja rotada sobrepasa el ancho de la pantalla y ensancha la pagina.
+       overflow-x: clip recorta sin crear un contenedor con scroll (no rompe elementos fijos). */
+    #inicio,
+    #historia {
+        overflow-x: clip;
+    }
+
+    /* Boton de WhatsApp siempre visible, respetando barras del sistema */
+    .whatsapp-float {
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        width: 52px;
+        height: 52px;
+        z-index: 1500;
+    }
+
+    /* Pantalla de carga: logo mas grande y nitido (el logo es apaisado) */
+    .preloader-logo {
+        width: min(62vw, 230px);
+        height: auto;
+    }
+
+    .preloader.is-loaded .preloader-logo {
+        transform: scale(3);
+    }
+
+    .preloader-bar-container {
+        width: min(55vw, 190px);
+    }
+
+    /* Carrusel: tarjetas laterales separadas del centro (efecto "asomar") */
+    .carousel-container {
+        height: 370px;
+    }
+
+    .product-card {
+        width: 200px;
+        height: 310px;
+    }
+
+    .product-image {
+        height: 200px;
+    }
+
+    .product-title {
+        font-size: 0.82rem;
+    }
+
+    .product-card.card-center {
+        transform: translateX(0) scale(1);
+    }
+
+    .product-card.card-left {
+        transform: translateX(-92%) scale(0.78);
+        opacity: 0.7;
+    }
+
+    .product-card.card-right {
+        transform: translateX(92%) scale(0.78);
+        opacity: 0.7;
+    }
+}
